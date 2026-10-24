@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+header {
+    height: 72px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 32px;
+}
+
+.logo h3 {
+    color: var(--green);
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.logo p {
+    color: var(--green);
+    font-size: 9px;
+}
+
+nav {
+    display: flex;
+    gap: 32px;
+    margin-left: 50px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 12px;
+}
+
+.get-started {
+    background: var(--btn);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 11px 27px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+main {
+    position: relative;
+    min-height: 545px;
+    overflow: hidden;
+}
+
+.welcome {
+    width: 820px;
+    margin: 0 auto;
+    padding-top: 105px;
+    position: relative;
+}
+
+.text {
+    width: 560px;
+    text-align: center;
+}
+
+.text h1 {
+    font-size: 30px;
+    margin-bottom: 27px;
+    font-weight: 700;
+}
+
+.text p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.food {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    object-fit: contain;
+    right: -210px;
+    top: 110px;
+}
+
+.leaf {
+    position: absolute;
+    width: 75px;
+    left: 26%;
+    top: 55px;
+}
+
+.broccoli-left {
+    position: absolute;
+    width: 125px;
+    left: -15px;
+    bottom: -5px;
+}
+
+
+footer {
+    position: relative;
+    background: var(--soft);
+    min-height: 250px;
+    overflow: hidden;
+}
+
+.footer-content {
+    width: 820px;
+    margin: auto;
+    padding: 35px 0 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-about {
+    width: 230px;
+}
+
+.footer-about .logo-icon {
+    font-size: 28px;
+}
+
+.copyright-text {
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.contact {
+    width: 230px;
+}
+
+.contact h3,
+.links h3 {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.links {
+    width: 130px;
+}
+
+.links a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 11px;
+    margin-bottom: 13px;
+}
+
+.bottom {
+    height: 40px;
+    background: var(--bar);
+    display: flex;
+    align-items: center;
+    padding-left: calc((100% - 820px) / 2);
+}
+
+.bottom p {
+    color: white;
+    font-size: 9px;
+}
+
+.broccoli-right {
+    position: absolute;
+    right: -15px;
+    bottom: -5px;
+    width: 105px;
+}
+
+
+/* Адаптация под телефон */
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 0 25px;
+    }
+
+    nav {
+        gap: 15px;
+        margin-left: 10px;
+    }
+
+    .welcome {
+        width: 90%;
+    }
+
+    .text {
+        width: 70%;
+    }
+
+    .food {
+        right: -70px;
+        width: 200px;
+    }
+
+    .footer-content {
+        width: 90%;
+    }
+
+    .bottom {
+        padding-left: 5%;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    header {
+        height: auto;
+        padding: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .get-started {
+        display: none;
+    }
+
+    main {
+        min-height: auto;
+    }
+
+    .welcome {
+        width: 100%;
+        padding: 70px 20px 80px;
+    }
+
+    .text {
+        width: 100%;
+    }
+
+    .text h1 {
+        font-size: 25px;
+    }
+
+    .text p {
+        font-size: 12px;
+    }
+
+    .food {
+        position: relative;
+        display: block;
+        right: auto;
+        top: auto;
+        margin: 20px auto 0;
+        width: 220px;
+    }
+
+    .leaf {
+        left: 10%;
+    }
+
+    .broccoli-left {
+        width: 80px;
+    }
+
+    .footer-content {
+        width: 90%;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-about,
+    .contact,
+    .links {
+        width: 100%;
+    }
+
+    .broccoli-right {
+        width: 75px;
+    }
+}
+.broccoli-left {
+    position: absolute;
+    width: 125px;
+    left: -15px;
+    bottom: -5px;
+    transform: rotate(-15deg);
+}
+
+.broccoli-right {
+    position: absolute;
+    right: -15px;
+    bottom: -5px;
+    width: 105px;
+    transform: rotate(15deg);
+}

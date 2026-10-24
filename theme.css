@@ -1,0 +1,218 @@
+/* ============ ЦВЕТА (светлая / тёмная тема) ============ */
+:root {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --soft: #f3fbf0;
+  --text: #303030;
+  --muted: #6f7872;
+  --border: #e2e6e3;
+  --green: #08752d;
+  --btn: #08752d;
+  --bar: #0a6118;
+  color-scheme: light;
+}
+
+/* Галочка нажата -> меняем тему на противоположную */
+:root:has(#theme:checked) {
+  --bg: #121714;
+  --card: #1b231e;
+  --soft: #19221c;
+  --text: #e8eeea;
+  --muted: #a6b2aa;
+  --border: #2e3a33;
+  --green: #4fd17f;
+  --btn: #0f8c3c;
+  --bar: #0c3a16;
+  color-scheme: dark;
+}
+
+/* Если у телефона/компьютера уже включена тёмная тема — по умолчанию тёмная */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121714;
+    --card: #1b231e;
+    --soft: #19221c;
+    --text: #e8eeea;
+    --muted: #a6b2aa;
+    --border: #2e3a33;
+    --green: #4fd17f;
+    --btn: #0f8c3c;
+    --bar: #0c3a16;
+    color-scheme: dark;
+  }
+  :root:has(#theme:checked) {
+    --bg: #ffffff;
+    --card: #ffffff;
+    --soft: #f3fbf0;
+    --text: #303030;
+    --muted: #6f7872;
+    --border: #e2e6e3;
+    --green: #08752d;
+    --btn: #08752d;
+    --bar: #0a6118;
+    color-scheme: light;
+  }
+}
+
+/* ============ КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ (без JS) ============ */
+.theme-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.theme-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--btn);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+  transition: transform .25s ease;
+}
+.theme-toggle::before { content: "🌓"; font-size: 24px; }
+.theme-toggle:hover { transform: scale(1.12) rotate(20deg); }
+.theme-checkbox:focus-visible + .theme-toggle { outline: 3px solid var(--green); }
+
+/* ============ ШАПКА: логотип-ссылка, кнопка, меню ============ */
+.logo-link { text-decoration: none; color: inherit; }
+.header-form { margin: 0; }
+header button { cursor: pointer; }
+nav a { transition: color .2s ease; }
+nav a:hover { color: var(--green); }
+nav a.active { color: var(--green); font-weight: 700; }
+
+/* ============ ПОЛЯ ФОРМЫ ============ */
+input, select, textarea { background: var(--card); color: var(--text); }
+select { color: var(--muted); }
+
+/* ============ ХОВЕР НА ИКОНКИ ============ */
+.icon, .card-icon, .logo-icon, .logo img, .brand img,
+.checks > div > span, .eligibility-checks > div > span,
+.contact-info > div > span {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.icon:hover, .card-icon:hover, .logo-icon:hover, .logo img:hover, .brand img:hover,
+.checks > div > span:hover, .eligibility-checks > div > span:hover,
+.contact-info > div > span:hover {
+  transform: translateY(-4px) scale(1.15) rotate(-6deg);
+}
+
+/* Карточки с иконками */
+.audience-box, .features > div, .categories > span,
+.heating-box, .info-card, .checks > span {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.audience-box:hover, .features > div:hover, .categories > span:hover,
+.heating-box:hover, .info-card:hover, .checks > span:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .15);
+}
+
+/* Ссылки в футере главной */
+.footer-main p a:hover { text-decoration: underline; }
+
+
+/* =====================================================================
+   ИСПРАВЛЕНИЯ БАГОВ (этот файл подключён последним, поэтому перебивает всё)
+   ===================================================================== */
+
+/* --- Общее --- */
+body { overflow-x: hidden; }                       /* нет горизонтального скролла от больших картинок */
+nav a[href="index.html"]::first-letter { text-transform: uppercase; }   /* "bosh sahifa" -> "Bosh sahifa" */
+
+/* Футер: слишком мелкий текст (7–9px) */
+.footer-content h3 { font-size: 13px; }
+.footer-content p,
+.footer-content a { font-size: 11px; line-height: 1.7; }
+.footer-about .logo h3 { font-size: 12px; }
+.footer-about .logo p { font-size: 8px; }
+.bottom { height: auto; min-height: 30px; font-size: 10px; }
+
+/* --- index.html: пустой url("./") в .delivery-bg давал битый запрос --- */
+.delivery-bg { background-image: linear-gradient(#101512cc, #101512cc) !important; }
+
+/* --- index2.html: логотип в .logo-icon был без размера (на всю натуральную ширину) --- */
+.logo-icon img { width: 45px; height: 40px; object-fit: contain; display: block; }
+
+/* --- index3.html: чекбоксы-инпуты --- */
+.checks input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--btn);
+  cursor: pointer;
+}
+.questions .checks { font-size: 15px; gap: 18px; }
+.questions .checks div { gap: 12px; }
+
+/* index3: читаемые размеры текста */
+.top-text { font-size: 13px; }
+.questions h1 { font-size: 24px; }
+.question-info { font-size: 13px; }
+.info-card { width: 340px; }
+.info-card h3 { font-size: 13px; }
+.info-card p { font-size: 11.5px; }
+.serve p { font-size: 12.5px; }
+.serve h2, .eligibility h2, .aging h2 { font-size: 26px; }
+.subtitle, .eligibility-checks, .eligibility > p:not(.subtitle),
+.aging p, .aging h4, .requirements, .services ul { font-size: 12.5px; }
+
+/* index3: БОЛЬШИЕ картинки */
+.serve { min-height: 440px; }
+.serve-text { width: 440px; }
+.delivery-man { width: 400px; }
+
+.why { width: 900px; min-height: 400px; }
+.why-text { width: 400px; }
+.why p { font-size: 12px; }
+.why h2 { font-size: 28px; }
+.van { width: 620px; right: -160px; top: 40px; }
+
+/* --- index4.html (меню): картинки на всю ширину и без вылезания --- */
+.qwwq img { width: min(1100px, 100%); max-width: 100%; height: auto; }
+.heating h2 { font-size: 22px; }
+.heating > p { font-size: 13px; }
+.heating-box h3 { font-size: 13px; }
+.heating-box p { font-size: 11.5px; }
+.notice { font-size: 12px !important; }
+
+/* --- index5.html (контакты и форма) --- */
+.description { font-size: 11px; max-width: 520px; }
+label { font-size: 11px; }
+input, select { font-size: 12px; height: 40px; }
+textarea { width: 100%; height: 90px; font-size: 12px; }
+.submit { width: 130px; height: 38px; font-size: 11px; cursor: pointer; }
+.contact-info p { font-size: 12px; }
+.contact-info span { font-size: 18px; }
+/* телефон и почта стояли рядом в строку — теперь друг под другом */
+.contact-info > div:nth-child(2) { display: grid; grid-template-columns: auto 1fr; column-gap: 7px; }
+.contact-info > div:nth-child(2) span { grid-row: 1 / 3; }
+
+/* ============ ТЕЛЕФОН / ПЛАНШЕТ ============ */
+@media (max-width: 800px) {
+  .serve { min-height: 460px; }
+  .delivery-man { width: 300px; }
+  .info-card { width: 100%; }
+
+  .why { overflow: hidden; }
+  .van { width: 500px; right: -130px; }
+}
+
+@media (max-width: 600px) {
+  .questions h1 { font-size: 19px; }
+  .serve { min-height: 640px; }
+  .serve-text { width: 100%; }
+  .delivery-man { width: 340px; }
+
+  .why { min-height: 720px; }
+  .van { width: 560px; top: 320px; right: -150px; }
+
+  .qwwq img { width: 100%; }
+}
